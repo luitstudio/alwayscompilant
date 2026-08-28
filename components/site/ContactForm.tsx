@@ -28,7 +28,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -42,29 +42,36 @@ export function ContactForm() {
     }
 
     setStatus("loading");
-    const name = String(data.get("name"));
-    const business = String(data.get("business") || "Not provided");
-    const email = String(data.get("email"));
-    const phone = String(data.get("phone"));
-    const service = String(data.get("service"));
-    const message = String(data.get("message"));
-    const subject = encodeURIComponent(`Compliance inquiry — ${service}`);
-    const body = encodeURIComponent(`Full Name: ${name}\nBusiness Name: ${business}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nRequirement:\n${message}`);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: String(data.get("name")),
+          business: String(data.get("business") || ""),
+          email: String(data.get("email")),
+          phone: String(data.get("phone")),
+          service: String(data.get("service")),
+          message: String(data.get("message")),
+          website: String(data.get("website") || ""),
+        }),
+      });
 
-    window.setTimeout(() => {
-      try {
-        window.location.assign(`mailto:${siteContent.email}?subject=${subject}&body=${body}`);
-        setStatus("success");
-      } catch {
-        setStatus("error");
-      }
-    }, 250);
+      if (!response.ok) throw new Error("Unable to submit inquiry");
+
+      form.reset();
+      setErrors({});
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const fieldError = (name: FieldName) => errors[name] ? <span className="ac-field-error" id={`${name}-error`}>{errors[name]}</span> : null;
 
-  return <form className="ac-contact-form" noValidate onSubmit={handleSubmit}>
-    <div className="ac-form-heading"><span className="ac-eyebrow">SEND AN INQUIRY</span><h2>Tell us what you need help with.</h2><p>Your details stay in your browser until your email application opens.</p></div>
+  return <form className="ac-contact-form" noValidate onSubmit={handleSubmit} aria-busy={status === "loading"}>
+    <div className="ac-form-heading"><span className="ac-eyebrow">SEND AN INQUIRY</span><h2>Tell us what you need help with.</h2><p>Your inquiry will be sent securely to our compliance desk.</p></div>
+    <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" hidden />
     <div className="ac-form-grid">
       <div className="ac-field"><label htmlFor="name">Full Name <span>*</span></label><input id="name" name="name" autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />{fieldError("name")}</div>
       <div className="ac-field"><label htmlFor="business">Business Name</label><input id="business" name="business" autoComplete="organization" /></div>
@@ -73,10 +80,10 @@ export function ContactForm() {
       <div className="ac-field ac-field-full"><label htmlFor="service">Service Required <span>*</span></label><select id="service" name="service" defaultValue="" aria-invalid={Boolean(errors.service)} aria-describedby={errors.service ? "service-error" : undefined}><option value="" disabled>Select a service</option>{contactServices.map((service) => <option value={service} key={service}>{service}</option>)}</select>{fieldError("service")}</div>
       <div className="ac-field ac-field-full"><label htmlFor="message">Message <span>*</span></label><textarea id="message" name="message" rows={5} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : undefined}></textarea>{fieldError("message")}</div>
     </div>
-    <button className="ac-button ac-button-primary ac-submit" type="submit" disabled={status === "loading"}>{status === "loading" ? "Preparing inquiry…" : "Send Inquiry"} <span aria-hidden="true">↗</span></button>
+    <button className="ac-button ac-button-primary ac-submit" type="submit" disabled={status === "loading"}>{status === "loading" ? "Sending inquiry..." : "Send Inquiry"} <span aria-hidden="true">↗</span></button>
     <div className="ac-form-status" aria-live="polite">
-      {status === "success" && <p className="success">Your inquiry draft is ready in your email application. Review it and press send to complete the inquiry.</p>}
-      {status === "error" && Object.keys(errors).length === 0 && <p className="error">We could not open your email application. Email us directly at <a href={`mailto:${siteContent.email}`}>{siteContent.email}</a>.</p>}
+      {status === "success" && <p className="success">Thank you. Your inquiry has been sent to our compliance desk.</p>}
+      {status === "error" && Object.keys(errors).length === 0 && <p className="error">We could not send your inquiry. Please try again or email <a href={`mailto:${siteContent.email}`}>{siteContent.email}</a>.</p>}
       {status === "error" && Object.keys(errors).length > 0 && <p className="error">Please correct the highlighted fields before continuing.</p>}
     </div>
   </form>;

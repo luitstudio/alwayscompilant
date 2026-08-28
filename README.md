@@ -30,6 +30,7 @@ Requirements:
 
 - Node.js compatible with Next.js 16
 - npm
+- Python 3 for contact-form email delivery
 
 Install dependencies and start the development server:
 
@@ -42,7 +43,14 @@ Open `http://localhost:3000` in a browser.
 
 ## Environment Variables
 
-The application does not currently require environment variables. Local environment files are ignored by Git and must not be committed.
+The contact form delivers directly to the public MX server for
+`info@alwayscompliant.in`; it does not use an SMTP username or password. The
+defaults work without an environment file. `.env.example` documents optional
+recipient, sender, MX host, port and HELO overrides.
+
+The contact API invokes `scripts/send_contact_email.py` with `python` on Windows
+or `python3` on Linux. Set `PYTHON_EXECUTABLE` when the production interpreter
+uses a different command or absolute path.
 
 ## Available Scripts
 
@@ -73,4 +81,5 @@ npm run start
 - Deploy from the repository root with the standard Next.js build command, `npm run build`.
 - Keep `sastik-html-package/Sastik/home-3.html` in the deployment source because the home route reads this preserved template.
 - Keep all files under `public/` available at the site root.
-- Configure any future deployment secrets in the hosting provider rather than committing environment files.
+- Ensure the production host permits outbound SMTP connections on port 25.
+- Ensure the production Node.js host also has Python 3 available to the Next.js server process.

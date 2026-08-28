@@ -30,6 +30,32 @@ export function SastikScripts() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname !== "/" || !window.matchMedia("(max-width: 767px)").matches) return;
+
+    const items = document.querySelectorAll<HTMLElement>(".introduction .ac-mobile-reveal");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      items.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
+    );
+
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  useEffect(() => {
     if (pathname !== "/") return;
 
     let cancelled = false;

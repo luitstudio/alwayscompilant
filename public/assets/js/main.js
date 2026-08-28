@@ -366,8 +366,12 @@
 	= mobile menu
 	-------------------------------------------*/
 	$('.xb-nav-hidden li.menu-item-has-children > a').append('<span class="xb-menu-toggle"></span>');
-	$('.xb-header-menu li.menu-item-has-children, .xb-menu-primary li.menu-item-has-children').append('<span class="xb-menu-toggle"></span>');
-	$('.xb-menu-toggle').on('click', function () {
+	$('.xb-header-menu li.menu-item-has-children, .xb-menu-primary li.menu-item-has-children').each(function () {
+		if (!$(this).children('.xb-menu-toggle').length) {
+			$(this).append('<span class="xb-menu-toggle"></span>');
+		}
+	});
+	$('.xb-menu-toggle').not('.ac-mobile-services-toggle').on('click', function () {
 		if (!$(this).hasClass('active')) {
 			$(this).closest('ul').find('.xb-menu-toggle.active').toggleClass('active');
 			$(this).closest('ul').find('.sub-menu.active').toggleClass('active').slideToggle();
@@ -390,7 +394,7 @@
 			$(this).closest('.menu-item').find('> .sub-menu').slideToggle();
 		}
 	});
-	$(".xb-nav-mobile").on('click', function () {
+	$(".xb-nav-mobile").not('.ac-mobile-menu-toggle').on('click', function () {
 		$(this).toggleClass('active');
 		$('.xb-header-menu').toggleClass('active');
 	});

@@ -1,9 +1,9 @@
 export const siteContent = {
   brand: "ALWAYS COMPLIANT",
-  phoneDisplay: "+91 99999 99999",
-  phoneHref: "tel:+919999999999",
-  email: "hello@alwayscompliant.com",
-  whatsappHref: "https://wa.me/919999999999",
+  phoneDisplay: "+91 9864309838",
+  phoneHref: "tel:+919864309838",
+  email: "info@alwayscompliant.in",
+  whatsappHref: "https://wa.me/919864309838",
   hero: {
     eyebrow: "GST & ROC Experts",
     heading: "Stay Compliant.<br>Grow With Confidence.",
@@ -157,67 +157,7 @@ function replacePairs(source: string, pairs: ReadonlyArray<readonly [string, str
 
 function transformHeader(source: string) {
   void source;
-  const services = [
-    "GST Filing",
-    "Company Registration",
-    "ROC Compliance",
-    "Trademark Registration",
-    "Income Tax Filing",
-  ];
-  const serviceItems = services
-    .map((service) => `<li><a href="/services"><span>${service}</span></a></li>`)
-    .join("");
-
-  return `<header id="xb-header-area" class="header-area header-area--three header-transparent is-sticky">
-    <div class="xb-header stricky">
-      <div class="container">
-        <div class="header__wrap ul_li_between">
-          <div class="xb-header-logo">
-            <a href="index.html" class="logo"><img src="assets/img/logo/logo-white.svg" alt="${siteContent.brand}"></a>
-          </div>
-          <div class="main-menu__wrap navbar navbar-expand-lg p-0">
-            <nav class="main-menu collapse navbar-collapse" aria-label="Primary navigation">
-              <ul>
-                <li class="active"><a href="index.html"><span>Home</span></a></li>
-                <li class="menu-item-has-children"><a href="/services"><span>Services</span></a><ul class="submenu">${serviceItems}</ul></li>
-                <li><a href="/about"><span>About</span></a></li>
-                <li><a href="/insights"><span>Insights</span></a></li>
-                <li><a href="/contact"><span>Contact</span></a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="xb-header-btn d-lg-block d-none">
-            <a class="thm-btn thm-btn--gradient2" data-split-link="" aria-label="Book Consultation" href="/contact">
-              <div class="inner"><div class="text" data-link-shadow="">Book Consultation</div><div class="arrow"><img src="assets/img/icon/sms-icon02.svg" alt=""></div></div>
-              <div class="btn-shape"><div class="shape shape--1"></div><div class="shape shape--2"></div><div class="shape shape--3"></div></div>
-            </a>
-          </div>
-          <div class="header-bar-mobile side-menu d-lg-none">
-            <a class="xb-nav-mobile" href="#!" aria-label="Open navigation"><span></span><span></span><span></span></a>
-          </div>
-        </div>
-        <div class="xb-header-wrap">
-          <div class="xb-header-menu">
-            <div class="xb-header-menu-scroll">
-              <button class="xb-menu-close xb-hide-xl xb-close" type="button" aria-label="Close navigation"></button>
-              <div class="xb-logo-mobile xb-hide-xl"><a href="index.html" rel="home"><img src="assets/img/logo/logo.svg" alt="${siteContent.brand}"></a></div>
-              <nav class="xb-header-nav" aria-label="Mobile navigation">
-                <ul class="xb-menu-primary clearfix">
-                  <li class="menu-item active"><a href="index.html"><span>Home</span></a></li>
-                  <li class="menu-item menu-item-has-children"><a href="/services"><span>Services</span></a><ul class="sub-menu">${serviceItems}</ul></li>
-                  <li class="menu-item"><a href="/about"><span>About</span></a></li>
-                  <li class="menu-item"><a href="/insights"><span>Insights</span></a></li>
-                  <li class="menu-item"><a href="/contact"><span>Contact</span></a></li>
-                </ul>
-              </nav>
-              <a class="thm-btn thm-btn--gradient2 ac-mobile-consultation" href="/contact"><span class="inner"><span class="text">Book Consultation</span></span></a>
-            </div>
-          </div>
-          <div class="xb-header-menu-backdrop"></div>
-        </div>
-      </div>
-    </div>
-  </header>`;
+  return '<div data-shared-site-header="true"></div>';
 }
 
 function transformHero(source: string) {
@@ -319,7 +259,8 @@ function transformWorkflow(source: string) {
 }
 
 function transformIntroduction(source: string) {
-  return replacePairs(source, [
+  let itemIndex = 0;
+  const section = replacePairs(source, [
     ["AI Introduction", siteContent.brand],
     ["Unlock the Full Strength of SaaS All in One Platform", siteContent.introduction.heading],
     ["Powerful automation solutions, all in one platform", siteContent.introduction.description],
@@ -337,6 +278,11 @@ function transformIntroduction(source: string) {
       "Experts coordinate registrations, filings and recurring compliance across India.",
     ],
   ]);
+
+  return section.replace(/<div class="as-asintroduction-item">/g, () => {
+    const direction = itemIndex++ % 2 === 0 ? "left" : "right";
+    return `<div class="as-asintroduction-item ac-mobile-reveal ac-mobile-reveal--${direction}">`;
+  });
 }
 
 function transformPricing(source: string) {
@@ -575,7 +521,7 @@ function transformFooter(source: string) {
   const footer = replacePairs(source, [
     ["Join Our Newsletter", siteContent.brand],
     ["Enter your  mail", "Share your filing or registration requirement"],
-    ["Subscribe", "Contact Advisory Desk"],
+    ["Subscribe", "Contact Us"],
     ["<span class=\"footer-widget-title\">Pages</span>", "<span class=\"footer-widget-title\">Navigation</span>"],
     [">Problems<", ">Home<"],
     [">Solutions<", ">About<"],
@@ -595,11 +541,11 @@ function transformFooter(source: string) {
     [">terms of service .<", ">Tax, registration and compliance advisory<"],
     [">privacy policy<", ">Privacy Policy<"],
   ]);
-  return footer;
+  return replaceOnce(footer, '<a href="#!">Contact Us</a>', '<a href="/contact">Contact Us</a>');
 }
 
 export function applyAlwaysCompliantContent(source: string) {
-  let html = source;
+  let html = transformVisualAssets(source);
   html = transformBlock(html, '<header id="xb-header-area"', "</header>", transformHeader);
   html = transformBlock(html, '<section class="hero-area', "</section>", transformHero);
   html = transformBlock(html, '<section class="problem', "</section>", transformProblems);
@@ -621,12 +567,10 @@ export function applyAlwaysCompliantContent(source: string) {
   html = transformBlock(html, '<section class="cta', "</section>", transformCta);
   html = transformBlock(html, '<section class="brand-section', "</section>", transformBrand);
   html = transformBlock(html, '<footer class="footer', "</footer>", transformFooter);
-  html = transformVisualAssets(html);
-
   html = replaceAll(html, '<section class="problem pt-120 pb-120">', '<section id="about" class="problem pt-120 pb-120">');
   html = replaceAll(html, '<section class="introduction pos-rel pb-15">', '<section id="insights" class="introduction pos-rel pb-15">');
   html = replaceAll(html, '<section class="faq-section pos-rel pb-15">', '<section id="contact" class="faq-section pos-rel pb-15">');
-  html = replaceAll(html, 'href="index.html"', 'href="/"');
+  html = replaceOptional(html, 'href="index.html"', 'href="/"');
   html = replaceOptional(html, 'href="home-2.html"', 'href="/about"');
   html = replaceOptional(html, 'href="home-3.html"', 'href="/services"');
   html = replaceOptional(html, 'href="home-4.html"', 'href="/insights"');
