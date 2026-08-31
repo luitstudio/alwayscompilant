@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import parse from "html-react-parser";
+import parse, { Element } from "html-react-parser";
 import { applyAlwaysCompliantContent } from "@/data/site";
+import { SiteHeader } from "@/components/site/SiteHeader";
 
 function getTemplateBody() {
   const templatePath = path.join(
@@ -25,5 +26,11 @@ function getTemplateBody() {
 }
 
 export function SastikTemplate() {
-  return <>{parse(getTemplateBody())}</>;
+  return <>{parse(getTemplateBody(), {
+    replace(domNode) {
+      if (domNode instanceof Element && domNode.attribs["data-shared-site-header"] === "true") {
+        return <SiteHeader legacyBehavior />;
+      }
+    },
+  })}</>;
 }
