@@ -30,7 +30,6 @@ Requirements:
 
 - Node.js compatible with Next.js 16
 - npm
-- Python 3 for contact-form email delivery
 
 Install dependencies and start the development server:
 
@@ -43,14 +42,18 @@ Open `http://localhost:3000` in a browser.
 
 ## Environment Variables
 
-The contact form delivers directly to the public MX server for
-`info@alwayscompliant.in`; it does not use an SMTP username or password. The
-defaults work without an environment file. `.env.example` documents optional
-recipient, sender, MX host, port and HELO overrides.
+The contact form sends mail through [Resend](https://resend.com). Copy
+`.env.example` to `.env.local` and set:
 
-The contact API invokes `scripts/send_contact_email.py` with `python` on Windows
-or `python3` on Linux. Set `PYTHON_EXECUTABLE` when the production interpreter
-uses a different command or absolute path.
+- `RESEND_API_KEY` — required. Create one in the Resend dashboard under
+  API Keys. Before it can send from `@alwayscompliant.in`, the domain must
+  be verified in Resend (Dashboard > Domains > Add Domain, then add the DNS
+  records Resend provides — this is a one-time step done by whoever manages
+  the domain's DNS).
+- `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` — recipient and sender addresses.
+
+Without `RESEND_API_KEY` set, or without the sending domain verified in
+Resend, the contact form will fail to send.
 
 ## Available Scripts
 
@@ -81,5 +84,5 @@ npm run start
 - Deploy from the repository root with the standard Next.js build command, `npm run build`.
 - Keep `sastik-html-package/Sastik/home-3.html` in the deployment source because the home route reads this preserved template.
 - Keep all files under `public/` available at the site root.
-- Ensure the production host permits outbound SMTP connections on port 25.
-- Ensure the production Node.js host also has Python 3 available to the Next.js server process.
+- Set `RESEND_API_KEY` in the production environment — the contact form cannot send mail without it.
+- Verify the sending domain in Resend before going live; unverified domains are rate-limited and can only send to the Resend account's own email address.

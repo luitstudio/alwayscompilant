@@ -1,3 +1,5 @@
+export const siteUrl = "https://alwayscompliant.in";
+
 export const siteContent = {
   brand: "ALWAYS COMPLIANT",
   phoneDisplay: "+91 9864309838",
@@ -323,6 +325,11 @@ function transformPricing(source: string) {
     ["Premium community & priority support", "Priority Advisory Support"],
     ["Start Enterprise Pro", "Request a Custom Compliance Plan"],
   ]);
+  section = replaceOnce(
+    section,
+    'aria-label="Request a Custom Compliance Plan" href="#!"',
+    'aria-label="Request a Custom Compliance Plan" href="/contact"',
+  );
   section = replaceAll(section, "Start Free Plan", "Get a Quote");
   section = replaceAll(section, "Start Essential Plan", "Book Compliance Review");
   section = replaceAll(section, "Start Enterprise Pro", "Request a Custom Compliance Plan");
@@ -518,30 +525,33 @@ function transformVisualAssets(source: string) {
 }
 
 function transformFooter(source: string) {
-  const footer = replacePairs(source, [
+  let footer = replacePairs(source, [
     ["Join Our Newsletter", siteContent.brand],
     ["Enter your  mail", "Share your filing or registration requirement"],
-    ["Subscribe", "Contact Us"],
     ["<span class=\"footer-widget-title\">Pages</span>", "<span class=\"footer-widget-title\">Navigation</span>"],
-    [">Problems<", ">Home<"],
-    [">Solutions<", ">About<"],
-    [">How it works<", ">Services<"],
-    [">Use case<", ">Insights<"],
-    [">Features<", ">Contact<"],
+    ['<a href="#!">Problems</a>', '<a href="/">Home</a>'],
+    ['<a href="#!">Solutions</a>', '<a href="/about">About</a>'],
+    ['<a href="#!">How it works</a>', '<a href="/services">Services</a>'],
+    ['<a href="#!">Use case</a>', '<a href="/insights">Insights</a>'],
+    ['<a href="#!">Features</a>', '<a href="/contact">Contact</a>'],
     ["<span class=\"footer-widget-title\">Pages</span>", "<span class=\"footer-widget-title\">Services</span>"],
-    [">AI introduction<", ">GST Filing<"],
-    [">pricing<", ">Company Registration<"],
-    [">FAQ<", ">ROC Compliance<"],
-    [">Integrations<", ">Trademark Registration<"],
-    [">Security<", ">Income Tax Filing<"],
+    ['<a href="#!">AI introduction</a>', '<a href="/services">GST Filing</a>'],
+    ['<a href="#!">pricing</a>', '<a href="/services">Company Registration</a>'],
+    ['<a href="#!">FAQ</a>', '<a href="/services">ROC Compliance</a>'],
+    ['<a href="#!">Integrations</a>', '<a href="/services">Trademark Registration</a>'],
+    ['<a href="#!">Security</a>', '<a href="/services">Income Tax Filing</a>'],
     ["<span class=\"footer-widget-title\">Help</span>", "<span class=\"footer-widget-title\">Contact</span>"],
-    [">24/7 Support<", `>${siteContent.phoneDisplay}<`],
-    [">Contact us<", `>${siteContent.email}<`],
+    ['<a href="#!">24/7 Support</a>', `<a href="${siteContent.phoneHref}">${siteContent.phoneDisplay}</a>`],
+    ['<a href="contact.html">Contact us</a>', `<a href="mailto:${siteContent.email}">${siteContent.email}</a>`],
     ["Copyright © 2026 <a href=\"index.html\">Sastik,</a> All rights reserved.", `© 2026 ${siteContent.brand}. All rights reserved`],
-    [">terms of service .<", ">Tax, registration and compliance advisory<"],
-    [">privacy policy<", ">Privacy Policy<"],
+    [
+      '<a href="#!">terms of service .</a> <a href="#!">privacy policy</a>',
+      '<a href="/terms">Terms of Service</a> · <a href="/privacy">Privacy Policy</a>',
+    ],
   ]);
-  return replaceOnce(footer, '<a href="#!">Contact Us</a>', '<a href="/contact">Contact Us</a>');
+  footer = transformBlock(footer, '<ul class="xb-social-media', "</ul>", () => "");
+  footer = replaceOnce(footer, '<a href="#!">Subscribe</a>', '<a href="/contact">Contact Us</a>');
+  return footer;
 }
 
 export function applyAlwaysCompliantContent(source: string) {

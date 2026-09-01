@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteContent } from "@/data/site";
 
@@ -7,7 +8,7 @@ export function SiteFooter() {
       <div className="container">
         <div className="ac-footer-main">
           <div className="ac-footer-brand">
-            <Link href="/"><img src="/assets/img/always-compliant/always-compliant-logo-white.svg" alt="Always Compliant" /></Link>
+            <Link href="/"><Image src="/assets/img/always-compliant/always-compliant-logo-white.svg" alt="Always Compliant" width={132} height={28} /></Link>
             <p>Clear guidance for GST, ROC, tax, registrations and recurring business compliance.</p>
           </div>
           <div>
@@ -25,7 +26,7 @@ export function SiteFooter() {
             <a href={siteContent.whatsappHref} target="_blank" rel="noreferrer">WhatsApp inquiry</a>
           </div>
         </div>
-        <div className="ac-footer-bottom"><span>© 2026 Always Compliant. All rights reserved.</span><span>Tax, registration and compliance advisory</span></div>
+        <div className="ac-footer-bottom"><span>© 2026 Always Compliant. All rights reserved.</span><span className="ac-footer-legal">Tax, registration and compliance advisory <Link href="/terms">Terms of Service</Link> <Link href="/privacy">Privacy Policy</Link></span></div>
       </div>
     </footer>
   );

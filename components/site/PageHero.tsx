@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type PageHeroProps = {
@@ -21,7 +22,7 @@ export function PageHero({ eyebrow, title, description, primary, secondary }: Pa
           {primary && <Link className="ac-button ac-button-primary" href={primary.href}>{primary.label} <span aria-hidden="true">↗</span></Link>}
           {secondary && <Link className="ac-button ac-button-secondary" href={secondary.href}>{secondary.label} <span aria-hidden="true">→</span></Link>}
         </div>}
-        <div className="ac-hero-mark" aria-hidden="true"><img src="/assets/img/always-compliant/always-compliant-mark.svg" alt="" /></div>
+        <div className="ac-hero-mark" aria-hidden="true"><Image src="/assets/img/always-compliant/always-compliant-mark.svg" alt="" width={59} height={56} /></div>
       </div>
     </section>
   );

@@ -2,12 +2,29 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./inner-pages.css";
 import { SastikScripts } from "@/components/SastikScripts";
+import { siteUrl } from "@/data/site";
+
+const title = "Always Compliant — GST, ROC & Tax Compliance Experts";
+const description =
+  "Expert-led GST, ROC, tax, registration and statutory compliance support for startups, MSMEs and growing businesses.";
 
 export const metadata: Metadata = {
-  title: "Always Compliant — GST, ROC & Tax Compliance Experts",
-  description:
-    "Expert-led GST, ROC, tax, registration and statutory compliance support for startups, MSMEs and growing businesses.",
+  metadataBase: new URL(siteUrl),
+  title: { default: title, template: "%s | Always Compliant" },
+  description,
   icons: { icon: "/assets/img/favicon.svg" },
+  openGraph: {
+    type: "website",
+    siteName: "Always Compliant",
+    title,
+    description,
+    url: "/",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 };
 
 export const viewport: Viewport = {
