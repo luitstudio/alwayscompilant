@@ -1,5 +1,4 @@
-import { spawn } from "node:child_process";
-import path from "node:path";
+import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -25,7 +24,7 @@ const limits = {
 } as const;
 
 function text(value: unknown, maxLength: number) {
-  return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+  return typeof value === "string" ? value.trim().replace(/[\r\n]+/g, " ").slice(0, maxLength) : "";
 }
 
 function parsePayload(value: unknown): ContactPayload | null {
@@ -37,7 +36,7 @@ function parsePayload(value: unknown): ContactPayload | null {
     email: text(input.email, limits.email),
     phone: text(input.phone, limits.phone),
     service: text(input.service, limits.service),
-    message: text(input.message, limits.message),
+    message: typeof input.message === "string" ? input.message.trim().slice(0, limits.message) : "",
     website: text(input.website, limits.website),
   };
 
@@ -48,43 +47,46 @@ function parsePayload(value: unknown): ContactPayload | null {
   return payload;
 }
 
-function sendWithPython(payload: ContactPayload) {
-  const executable = process.env.PYTHON_EXECUTABLE || (process.platform === "win32" ? "python" : "python3");
-  const script = path.join(process.cwd(), "scripts", "send_contact_email.py");
+let resend: Resend | null = null;
 
-  return new Promise<void>((resolve, reject) => {
-    const child = spawn(/* turbopackIgnore: true */ executable, [script], {
-      env: process.env,
-      shell: false,
-      stdio: ["pipe", "pipe", "pipe"],
-    });
-    let settled = false;
-    let stdout = "";
-    let stderr = "";
-    const finish = (callback: () => void) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timeout);
-      callback();
-    };
-    const timeout = setTimeout(() => {
-      child.kill();
-      finish(() => reject(new Error("Mail delivery timed out")));
-    }, 15_000);
+function getResend() {
+  if (resend) return resend;
 
-    child.stdout.on("data", (chunk: Buffer) => { stdout += chunk.toString(); });
-    child.stderr.on("data", (chunk: Buffer) => { stderr += chunk.toString(); });
-    child.on("error", (error) => {
-      finish(() => reject(error));
-    });
-    child.on("close", (code) => {
-      finish(() => {
-        if (code === 0) resolve();
-        else reject(new Error(stderr.trim() || stdout.trim() || "Mail delivery failed"));
-      });
-    });
-    child.stdin.end(JSON.stringify(payload));
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY must be configured");
+  }
+
+  resend = new Resend(apiKey);
+  return resend;
+}
+
+async function sendContactEmail(payload: ContactPayload) {
+  const toEmail = process.env.CONTACT_TO_EMAIL || "info@alwayscompliant.in";
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || "website@alwayscompliant.in";
+
+  const { error } = await getResend().emails.send({
+    to: toEmail,
+    from: `Always Compliant Website <${fromEmail}>`,
+    replyTo: `${payload.name} <${payload.email}>`,
+    subject: `Website compliance inquiry - ${payload.service}`,
+    text: [
+      "New inquiry from the Always Compliant website",
+      "",
+      `Full name: ${payload.name}`,
+      `Business name: ${payload.business || "Not provided"}`,
+      `Email: ${payload.email}`,
+      `Phone: ${payload.phone}`,
+      `Service: ${payload.service}`,
+      "",
+      "Requirement:",
+      payload.message,
+    ].join("\n"),
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 }
 
 export async function POST(request: Request) {
@@ -103,7 +105,7 @@ export async function POST(request: Request) {
   if (payload.website) return NextResponse.json({ ok: true });
 
   try {
-    await sendWithPython(payload);
+    await sendContactEmail(payload);
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Contact form mail delivery failed", error instanceof Error ? error.message : error);

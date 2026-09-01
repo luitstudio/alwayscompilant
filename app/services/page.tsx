@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { serviceDirectory } from "@/data/pages";
 
-export const metadata: Metadata = { title: "Business Compliance Services | Always Compliant", description: "GST, ROC, tax, registration, trademark and ongoing compliance support for startups, MSMEs and growing businesses." };
+export const metadata: Metadata = { title: "Business Compliance Services", description: "GST, ROC, tax, registration, trademark and ongoing compliance support for startups, MSMEs and growing businesses.", alternates: { canonical: "/services" } };
 
 export default function ServicesPage() {
   return <PageShell>
