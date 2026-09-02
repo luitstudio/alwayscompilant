@@ -164,6 +164,14 @@ function transformHeader(source: string) {
 
 function transformHero(source: string) {
   let hero = source;
+  for (let i = 1; i <= 6; i += 1) {
+    const suffix = String(i).padStart(2, "0");
+    hero = replaceOnce(
+      hero,
+      `<img src="assets/img/hero/flag-img${suffix}.png" alt="flag image">`,
+      '<img src="assets/img/always-compliant/india-flag.svg" alt="India flag">',
+    );
+  }
   hero = replacePairs(hero, [
     ["Join 1,000+ businesses, grow with confidence", siteContent.hero.eyebrow],
     ["AI Automation for Faster Business Operations", siteContent.hero.heading],
