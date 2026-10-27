@@ -355,7 +355,7 @@
     display: grid;
     overflow: hidden;
     @include border-radius(20px);
-    border: 1px solid #ebdcfe;
+    border: 1px solid rgba(1, 12, 65, 0.14);
     grid-template-columns: repeat(4, 1fr);
     @include respond(md) {
         grid-template-columns: repeat(2, 1fr);
@@ -389,13 +389,13 @@
         background-image: url(../img/shape/bg-shape.png);
         background-repeat: no-repeat;
         @include transition(.3s);
-        background-color: #efe5fd;
+        background-color: #f8f6f1;
     }
     &:not(:last-child) {
-        border-right: 1px solid #efe5fd;
+        border-right: 1px solid rgba(1, 12, 65, 0.12);
         @include respond(md) {
             border-right: none;
-            border-bottom: 1px solid #efe5fd;
+            border-bottom: 1px solid rgba(1, 12, 65, 0.12);
         }
     }
     &:nth-child(3) {
@@ -403,12 +403,12 @@
             border-bottom: none;
         }
         @include respond(xs) {
-            border-bottom: 1px solid #efe5fd;
+            border-bottom: 1px solid rgba(1, 12, 65, 0.12);
         }
     }
     &:nth-child(odd) {
         @include respond(md) {
-            border-right: 1px solid #efe5fd;
+            border-right: 1px solid rgba(1, 12, 65, 0.12);
         }
         @include respond(xs) {
             border-right: none;
@@ -432,7 +432,7 @@
             width: 40px;
             height: 40px;
             @include center;
-            background: #efe5fd;
+            background: #f8f6f1;
             @include transition(.3s);
             @include border-radius(89px);
         }
@@ -459,7 +459,7 @@
                 transform: rotate(-45deg);
             }
             &:hover {
-                color: #4B04B1;
+                color: #8a5a00;
                 
                 i {
                     transform: rotate(0deg);

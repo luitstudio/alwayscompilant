@@ -8,7 +8,7 @@ export const siteContent = {
   whatsappHref: "https://wa.me/919864309838",
   hero: {
     eyebrow: "GST & ROC Experts",
-    heading: "Stay Compliant.<br>Grow With Confidence.",
+    heading: 'Stay Compliant.<br>Grow With <span class="ac-gold-text">Confidence.</span>',
     description:
       "Expert-led tax, registration and statutory compliance support for startups, MSMEs and growing businesses that want clarity before every filing.",
     primaryCta: "Book Consultation",
@@ -169,7 +169,7 @@ function transformHero(source: string) {
     hero = replaceOnce(
       hero,
       `<img src="assets/img/hero/flag-img${suffix}.png" alt="flag image">`,
-      '<img src="assets/img/always-compliant/india-flag.svg" alt="India flag">',
+      i === 1 ? '<span class="ac-badge-mark" aria-hidden="true">AC</span>' : "",
     );
   }
   hero = replacePairs(hero, [

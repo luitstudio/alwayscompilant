@@ -349,7 +349,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid #ebdcfe;
+            border: 1px solid rgba(1, 12, 65, 0.14);
             @include border-radius(20px);
             background: rgba(255, 254, 254, 0.7);
             box-shadow: 0 0 8px 0 rgba(255, 255, 255, 0);
@@ -391,7 +391,7 @@
             &.blure-shadow {
                 padding: 0;
                 background: #fffefe;
-                box-shadow: 0 0 15px 0 rgba(148, 81, 245, 0.3);
+                box-shadow: 0 0 15px 0 rgba(215, 169, 40, 0.28);
                 &::before,
                 &::after {
                     position: absolute;
@@ -457,7 +457,7 @@
             display: inline-block;
             color: var(--color-black);
             @include border-radius(100px);
-            background: linear-gradient(180deg, #c098f8 16.25%, #9654f4 58.13%, #9654f4 100%);
+            background: linear-gradient(180deg, #fff4d8 16.25%, #dd9401 58.13%, #8a5a00 100%);
             span {
                 padding: 2px 8px;
                 display: block;

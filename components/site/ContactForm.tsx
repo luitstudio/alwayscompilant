@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { contactServices } from "@/data/pages";
 import { siteContent } from "@/data/site";
+import { Button } from "./Button";
 
 type FieldName = "name" | "email" | "phone" | "service" | "message";
 type Errors = Partial<Record<FieldName, string>>;
@@ -69,22 +70,28 @@ export function ContactForm() {
 
   const fieldError = (name: FieldName) => errors[name] ? <span className="ac-field-error" id={`${name}-error`}>{errors[name]}</span> : null;
 
-  return <form className="ac-contact-form" noValidate onSubmit={handleSubmit} aria-busy={status === "loading"}>
-    <div className="ac-form-heading"><span className="ac-eyebrow">SEND AN INQUIRY</span><h2>Tell us what you need help with.</h2><p>Your inquiry will be sent securely to our compliance desk.</p></div>
-    <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" hidden />
-    <div className="ac-form-grid">
-      <div className="ac-field"><label htmlFor="name">Full Name <span>*</span></label><input id="name" name="name" autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />{fieldError("name")}</div>
-      <div className="ac-field"><label htmlFor="business">Business Name</label><input id="business" name="business" autoComplete="organization" /></div>
-      <div className="ac-field"><label htmlFor="email">Email Address <span>*</span></label><input id="email" name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "email-error" : undefined} />{fieldError("email")}</div>
-      <div className="ac-field"><label htmlFor="phone">Phone Number <span>*</span></label><input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "phone-error" : undefined} />{fieldError("phone")}</div>
-      <div className="ac-field ac-field-full"><label htmlFor="service">Service Required <span>*</span></label><select id="service" name="service" defaultValue="" aria-invalid={Boolean(errors.service)} aria-describedby={errors.service ? "service-error" : undefined}><option value="" disabled>Select a service</option>{contactServices.map((service) => <option value={service} key={service}>{service}</option>)}</select>{fieldError("service")}</div>
-      <div className="ac-field ac-field-full"><label htmlFor="message">Message <span>*</span></label><textarea id="message" name="message" rows={5} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : undefined}></textarea>{fieldError("message")}</div>
-    </div>
-    <button className="ac-button ac-button-primary ac-submit" type="submit" disabled={status === "loading"}>{status === "loading" ? "Sending inquiry..." : "Send Inquiry"} <span aria-hidden="true">↗</span></button>
-    <div className="ac-form-status" aria-live="polite">
-      {status === "success" && <p className="success">Thank you. Your inquiry has been sent to our compliance desk.</p>}
-      {status === "error" && Object.keys(errors).length === 0 && <p className="error">We could not send your inquiry. Please try again or email <a href={`mailto:${siteContent.email}`}>{siteContent.email}</a>.</p>}
-      {status === "error" && Object.keys(errors).length > 0 && <p className="error">Please correct the highlighted fields before continuing.</p>}
-    </div>
-  </form>;
+  return (
+    <form className="ac-contact-form" noValidate onSubmit={handleSubmit} aria-busy={status === "loading"}>
+      <div className="ac-form-heading">
+        <span className="ac-eyebrow">Send an inquiry</span>
+        <h2>Tell us what you need help with.</h2>
+        <p>Your inquiry will be sent securely to our compliance desk.</p>
+      </div>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" hidden />
+      <div className="ac-form-grid">
+        <div className="ac-field"><label htmlFor="name">Full Name <span>*</span></label><input id="name" name="name" autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />{fieldError("name")}</div>
+        <div className="ac-field"><label htmlFor="business">Business Name</label><input id="business" name="business" autoComplete="organization" /></div>
+        <div className="ac-field"><label htmlFor="email">Email Address <span>*</span></label><input id="email" name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "email-error" : undefined} />{fieldError("email")}</div>
+        <div className="ac-field"><label htmlFor="phone">Phone Number <span>*</span></label><input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "phone-error" : undefined} />{fieldError("phone")}</div>
+        <div className="ac-field ac-field-full"><label htmlFor="service">Service Required <span>*</span></label><select id="service" name="service" defaultValue="" aria-invalid={Boolean(errors.service)} aria-describedby={errors.service ? "service-error" : undefined}><option value="" disabled>Select a service</option>{contactServices.map((service) => <option value={service} key={service}>{service}</option>)}</select>{fieldError("service")}</div>
+        <div className="ac-field ac-field-full"><label htmlFor="message">Message <span>*</span></label><textarea id="message" name="message" rows={5} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : undefined}></textarea>{fieldError("message")}</div>
+      </div>
+      <Button className="ac-submit" type="submit" disabled={status === "loading"}>{status === "loading" ? "Sending inquiry..." : "Send Inquiry"} <span aria-hidden="true">-&gt;</span></Button>
+      <div className="ac-form-status" aria-live="polite">
+        {status === "success" && <p className="success">Thank you. Your inquiry has been sent to our compliance desk.</p>}
+        {status === "error" && Object.keys(errors).length === 0 && <p className="error">We could not send your inquiry. Please try again or email <a href={`mailto:${siteContent.email}`}>{siteContent.email}</a>.</p>}
+        {status === "error" && Object.keys(errors).length > 0 && <p className="error">Please correct the highlighted fields before continuing.</p>}
+      </div>
+    </form>
+  );
 }

@@ -397,7 +397,7 @@
     height: 140px;
     width: 140px;
     padding: 10px;
-    border: 1px solid #ebdcfe;
+    border: 1px solid rgba(1, 12, 65, 0.14);
     @include border-radius(10px);
     background: rgba(255, 254, 254, 0.7);
     @include respond(md) {
@@ -420,7 +420,7 @@
         height: 100%;
         width: 100%;
         display: inline-flex;
-        border: 1px solid #ebdcfe;
+        border: 1px solid rgba(1, 12, 65, 0.14);
         @media only screen and (max-width: 1023px) {
             padding: 10px;
         }
@@ -447,7 +447,7 @@
         bottom: 0;
         transform: translateX(-50%);
         background: var(--color-white);
-        box-shadow: 0 0 4px 0 rgba(148, 81, 245, 0.3);
+        box-shadow: 0 0 4px 0 rgba(215, 169, 40, 0.28);
         @include respond(md) {
             width: 100px;
             height: 100px;

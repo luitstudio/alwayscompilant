@@ -566,7 +566,7 @@
     position: relative;
     padding: 44px 50px 30px;
     @include border-radius(10px);
-    background: linear-gradient(180deg, #6840ff 0%, #fff 100%);
+    background: linear-gradient(180deg, #010c41 0%, #fff 100%);
     @include respond(lg) {
         padding: 40px 30px 30px;
     }
@@ -581,7 +581,7 @@
     display: inline-flex;
     border: 2px solid #fff;
     @include border-radius(100px);
-    background-image: linear-gradient(119deg, rgba(104, 64, 255, 0.4) 0%, rgba(161, 255, 98, 0.4) 33.73%, rgba(181, 162, 255, 0.4) 52.21%, rgba(195, 179, 255, 0.4) 100%);
+    background-image: linear-gradient(119deg, rgba(1, 12, 65, 0.32) 0%, rgba(161, 255, 98, 0.4) 33.73%, rgba(215, 169, 40, 0.32) 52.21%, rgba(255, 244, 216, 0.58) 100%);
     .xb-item {
         &--inner {
             gap: 7px;
@@ -607,7 +607,7 @@
     }
     &.bottom {
         padding: 6px;
-        background: linear-gradient(119deg, rgba(104, 64, 255, 0.1) 0%, rgba(161, 255, 98, 0.1) 33.73%, rgba(181, 162, 255, 0.1) 52.21%, rgba(195, 179, 255, 0.1) 100%);
+        background: linear-gradient(119deg, rgba(1, 12, 65, 0.1) 0%, rgba(161, 255, 98, 0.1) 33.73%, rgba(215, 169, 40, 0.12) 52.21%, rgba(255, 244, 216, 0.2) 100%);
         .xb-item {
             &--inner {
                 gap: 14px;
@@ -712,14 +712,14 @@
                     height: 20px;
                     @include border-radius(2px);
                     transform: translateX(-50%);
-                    background: linear-gradient(180deg, #6840ff 0%, #e1d9ff 100%);
+                    background: linear-gradient(180deg, #010c41 0%, #fff4d8 100%);
                     animation: topToBottom 3s linear infinite;
                     
                 }
                 &:nth-child(2) {
                     span {
                         animation-delay: .8s;
-                        background: linear-gradient(180deg, #e1d9ff 0%, #6840ff 100%);
+                        background: linear-gradient(180deg, #fff4d8 0%, #010c41 100%);
                     }
                 }
             }
@@ -756,7 +756,7 @@
             height: 59px;
             @include border-radius(2px);
             transform: translateX(-50%);
-            background: linear-gradient(180deg, #6840ff 0%, #fff 100%);
+            background: linear-gradient(180deg, #010c41 0%, #fff 100%);
             animation: BottomToTop 4s linear infinite;
         }
         &.two {
@@ -766,7 +766,7 @@
                 bottom: auto;
                 top: -20px;
                 animation: topToBottom 4s linear infinite;
-                background: linear-gradient(180deg, #fff 0%, #6840ff 100%);
+                background: linear-gradient(180deg, #fff 0%, #010c41 100%);
             }
         }
         &.three {

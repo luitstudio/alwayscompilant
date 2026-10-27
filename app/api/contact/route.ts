@@ -23,8 +23,31 @@ const limits = {
   website: 200,
 } as const;
 
+const rateLimitWindowMs = 10 * 60 * 1000;
+const maxRequestsPerWindow = 5;
+const submissions = new Map<string, { count: number; resetAt: number }>();
+
 function text(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().replace(/[\r\n]+/g, " ").slice(0, maxLength) : "";
+}
+
+function clientKey(request: Request) {
+  const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwardedFor || request.headers.get("x-real-ip") || "anonymous";
+}
+
+function isRateLimited(key: string) {
+  const now = Date.now();
+  const current = submissions.get(key);
+
+  if (!current || current.resetAt <= now) {
+    submissions.set(key, { count: 1, resetAt: now + rateLimitWindowMs });
+    return false;
+  }
+
+  if (current.count >= maxRequestsPerWindow) return true;
+  current.count += 1;
+  return false;
 }
 
 function parsePayload(value: unknown): ContactPayload | null {
@@ -90,6 +113,10 @@ async function sendContactEmail(payload: ContactPayload) {
 }
 
 export async function POST(request: Request) {
+  if (isRateLimited(clientKey(request))) {
+    return NextResponse.json({ ok: false, message: "Please wait before sending another inquiry." }, { status: 429 });
+  }
+
   let input: unknown;
   try {
     input = await request.json();

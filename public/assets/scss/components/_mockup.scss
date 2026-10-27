@@ -19,7 +19,7 @@
     overflow: hidden;
     position: relative;
     @include border-radius(10px);
-    background: linear-gradient(181deg, #6840ff 0%, #a48cff 99.97%);
+    background: linear-gradient(181deg, #010c41 0%, #d7a928 99.97%);
     @include respond(xs) {
         padding: 50px 0;
     }
@@ -30,7 +30,7 @@
         z-index: 1;
         border-radius: inherit;
         border-radius: 0 10px 10px 0;
-        background: linear-gradient(270deg, #6840ff 5.57%, rgba(104, 64, 255, 0) 100%);
+        background: linear-gradient(270deg, #010c41 5.57%, rgba(1, 12, 65, 0) 100%);
         @include respond(xs) {
             width: 80px;
         }

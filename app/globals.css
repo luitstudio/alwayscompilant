@@ -1,5 +1,461 @@
 /* Home-3 presentation is supplied by the original Sastik stylesheet bundle. */
 
+:root {
+  --ac-brand-primary: #142447;
+  --ac-brand-primary-hover: #0f1b36;
+  --ac-brand-primary-active: #0a1327;
+  --ac-brand-secondary: #172033;
+  --ac-brand-accent: #c69a45;
+  --ac-brand-accent-text: #8a6727;
+  --ac-brand-accent-soft: #f7edda;
+  --ac-page-bg: #ffffff;
+  --ac-section-bg: #f7f7f5;
+  --ac-surface: #ffffff;
+  --ac-border: #e6e8ec;
+  --ac-border-strong: #d6dae1;
+  --ac-text: #172033;
+  --ac-text-muted: #626b78;
+  --ac-focus: #c69a45;
+  --ac-inverse: #111827;
+  --ac-link: #142447;
+  --ac-success: #065f46;
+  --ac-warning: #92400e;
+  --ac-error: #991b1b;
+  --ac-info: #24508f;
+  --ac-shadow-sm: 0 10px 24px rgba(20, 36, 71, 0.06);
+  --ac-shadow-md: 0 18px 46px rgba(20, 36, 71, 0.1);
+}
+
+body.automation-saas {
+  --color-primary: var(--ac-brand-primary);
+  --color-secondary: var(--ac-brand-accent);
+  --color-heading: var(--ac-brand-secondary);
+  --color-default: var(--ac-text);
+  --color-body: var(--ac-page-bg);
+  background: var(--ac-page-bg);
+  color: var(--ac-text);
+}
+
+body.automation-saas a:focus-visible,
+body.automation-saas button:focus-visible,
+body.automation-saas input:focus-visible,
+body.automation-saas select:focus-visible,
+body.automation-saas textarea:focus-visible {
+  outline: 3px solid var(--ac-focus);
+  outline-offset: 4px;
+}
+
+body.automation-saas .hero-area--three,
+body.automation-saas .hero-area--three .as-hero-container,
+body.automation-saas .hero-area--three[data-bg-color] {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 68%, #f7f7f5 100%) !important;
+}
+
+body.automation-saas .hero-area--three .as-hero-shape .shape--1,
+body.automation-saas .hero-area--three .as-hero-shape .shape--2,
+body.automation-saas .hero-area--three .as-hero-shape .shape--3,
+body.automation-saas .hero-area--three .as-hero-shape .shape--4,
+body.automation-saas .hero-area--three .as-hero-shape .shape--5,
+body.automation-saas .hero-area--three .as-sec-shape {
+  display: none !important;
+}
+
+body.automation-saas .hero-area--three .as-hero-container {
+  padding-top: clamp(132px, 14vw, 178px);
+  overflow: hidden;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-item--breadcrumd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px 14px;
+  border: 1px solid rgba(198, 154, 69, 0.32);
+  border-radius: 999px;
+  background: #fffaf0;
+  color: var(--ac-brand-primary);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: none;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-item--breadcrumd img {
+  display: none !important;
+}
+
+body.automation-saas .hero-area--three .ac-badge-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ac-brand-primary);
+  color: #ffffff;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .sec-title .title {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  color: var(--ac-text);
+  font-size: clamp(48px, 6.2vw, 86px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  -webkit-text-fill-color: currentColor;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .sec-title .title .ac-gold-text {
+  color: var(--ac-brand-accent-text);
+  -webkit-text-fill-color: currentColor;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-item--content {
+  max-width: 760px;
+  margin: 26px auto 42px;
+  padding: 0;
+  color: var(--ac-text-muted);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-hero-btn {
+  gap: 16px;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-item--img {
+  max-width: 980px;
+  margin: 64px auto 0;
+  padding: 52px 38px 0;
+  text-align: center;
+  border: 1px solid var(--ac-border);
+  border-bottom: 0;
+  border-radius: 22px 22px 0 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f7f5 100%);
+  box-shadow: var(--ac-shadow-md);
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-item--img > img {
+  width: min(100%, 880px);
+  height: auto;
+}
+
+body.automation-saas .hero-area--three .xb-hero-content .xb-item--img .img {
+  filter: none;
+}
+
+body.automation-saas .header-area--three {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid var(--ac-border);
+  box-shadow: 0 8px 28px rgba(20, 36, 71, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+body.automation-saas .header-area--three .xb-header-logo {
+  width: 116px;
+  flex: 0 0 116px;
+}
+
+body.automation-saas .header-area--three .xb-header-logo .ac-logo-plate,
+body.automation-saas .header-area--three .xb-logo-mobile .ac-logo-plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.automation-saas .header-area--three .ac-official-logo {
+  display: block;
+  width: 100%;
+  max-width: 96px;
+  height: auto;
+  object-fit: contain;
+}
+
+body.automation-saas .header-area--three .xb-header-area-sticky,
+body.automation-saas .header-area--three .xb-header-area-sticky .header__wrap {
+  background: #ffffff !important;
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li {
+  padding: 18px 0;
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li > a {
+  color: var(--ac-text) !important;
+  background: transparent !important;
+  border-radius: 0;
+  font-weight: 600;
+  transition: color 180ms ease;
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li > a span,
+body.automation-saas .header-area--three .main-menu > ul > li > a span::after {
+  color: inherit !important;
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li:hover > a,
+body.automation-saas .header-area--three .main-menu > ul > li.active > a {
+  color: var(--ac-brand-accent-text) !important;
+  background: transparent !important;
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li:hover > a span::after,
+body.automation-saas .header-area--three .main-menu > ul > li.active > a span::after {
+  color: var(--ac-brand-accent-text) !important;
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li.active > a::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: 9px;
+  left: 18px;
+  height: 2px;
+  background: var(--ac-brand-accent);
+}
+
+body.automation-saas .main-menu > ul > li .submenu li:hover > a,
+body.automation-saas .main-menu > ul > li .submenu li.active > a {
+  color: var(--ac-brand-primary);
+}
+
+body.automation-saas .header-area--three .main-menu > ul > li .submenu {
+  border: 1px solid var(--ac-border);
+  box-shadow: var(--ac-shadow-md);
+}
+
+body.automation-saas .header-area--three .xb-header-btn .thm-btn--gradient2 {
+  padding: 13px 20px;
+}
+
+body.automation-saas .thm-btn--gradient2 {
+  min-height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ac-brand-primary);
+  border-radius: 10px;
+  background: var(--ac-brand-primary) !important;
+  box-shadow: 0 14px 28px rgba(20, 36, 71, 0.16);
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+body.automation-saas .thm-btn--gradient2::before {
+  display: none;
+}
+
+body.automation-saas .thm-btn--gradient2::after {
+  display: none;
+}
+
+body.automation-saas .thm-btn--gradient2 .btn-shape {
+  display: none;
+}
+
+body.automation-saas .thm-btn--gradient2 .inner {
+  gap: 10px;
+}
+
+body.automation-saas .thm-btn--gradient2 .text {
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+body.automation-saas .thm-btn--gradient2 .arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+body.automation-saas .thm-btn--gradient2:hover {
+  background: var(--ac-brand-primary-hover) !important;
+  border-color: var(--ac-brand-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(20, 36, 71, 0.18);
+}
+
+body.automation-saas .thm-btn--gradient2.bg_white {
+  background: #ffffff !important;
+  border-color: var(--ac-border-strong);
+  box-shadow: none;
+}
+
+body.automation-saas .thm-btn--gradient2.bg_white .text {
+  color: var(--ac-brand-primary);
+  text-shadow: none;
+}
+
+body.automation-saas .thm-btn--gradient2.bg_white:hover {
+  border-color: var(--ac-brand-accent);
+  background: #fffaf0 !important;
+}
+
+body.automation-saas .sec-title--three .title,
+body.automation-saas .as-problem-item .xb-item--title,
+body.automation-saas .as-solution-item .xb-item--title,
+body.automation-saas .as-feature-item .xb-item--title {
+  color: var(--ac-brand-secondary);
+}
+
+body.automation-saas .problem,
+body.automation-saas .work,
+body.automation-saas .testimonial,
+body.automation-saas .faq-section {
+  background: var(--ac-page-bg);
+}
+
+body.automation-saas .solution,
+body.automation-saas .feature,
+body.automation-saas .integration,
+body.automation-saas .introduction,
+body.automation-saas .pricing,
+body.automation-saas .pricing[data-bg-color] {
+  background: var(--ac-section-bg) !important;
+}
+
+body.automation-saas .sec-title--three .sub-title,
+body.automation-saas .sec-title--three .sub-title span {
+  color: var(--ac-brand-accent-text);
+}
+
+body.automation-saas .sec-title--three .sub-title {
+  border: 1px solid rgba(198, 154, 69, 0.24);
+  background: #fffaf0;
+  box-shadow: none;
+}
+
+body.automation-saas .sec-title--three .title {
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+body.automation-saas .sec-title--three .content {
+  color: var(--ac-text-muted);
+}
+
+body.automation-saas .as-problem-item,
+body.automation-saas .as-solution-inner {
+  border-color: var(--ac-border);
+  background: var(--ac-surface);
+  box-shadow: var(--ac-shadow-sm);
+}
+
+body.automation-saas .as-problem-item .xb-item--list,
+body.automation-saas .as-solution-item::before,
+body.automation-saas .as-solution-item .xb-item--icon {
+  background-color: #f7f7f5;
+}
+
+body.automation-saas .as-solution-item:not(:last-child),
+body.automation-saas .as-solution-item:nth-child(odd) {
+  border-color: rgba(1, 12, 65, 0.12);
+}
+
+body.automation-saas .as-solution-item .xb-item--btn:hover {
+  color: var(--ac-brand-accent-text);
+}
+
+body.automation-saas .as-feature-item {
+  border: 1px solid var(--ac-border);
+  background: #ffffff;
+  box-shadow: var(--ac-shadow-sm);
+}
+
+body.automation-saas .as-feature-inner::before {
+  background: var(--ac-border);
+}
+
+body.automation-saas .as-pricing-container {
+  background: var(--ac-section-bg);
+}
+
+body.automation-saas .as-pricing-inner {
+  border-color: var(--ac-border);
+}
+
+body.automation-saas .as-pricing-item {
+  border: 1px solid var(--ac-border);
+  background: #ffffff;
+  box-shadow: var(--ac-shadow-sm);
+}
+
+body.automation-saas .as-pricing-item.pro-item {
+  background: var(--ac-brand-primary);
+  box-shadow: 0 18px 44px rgba(20, 36, 71, 0.16);
+}
+
+body.automation-saas .as-pricing-shape,
+body.automation-saas .as-pricing-inner .blur-shape {
+  display: none !important;
+}
+
+body.automation-saas .as-testimonail-item {
+  border-color: var(--ac-border);
+  background: #ffffff;
+  box-shadow: var(--ac-shadow-sm);
+}
+
+body.automation-saas .as-testimonail-content::before,
+body.automation-saas .as-testimonail-content::after {
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+body.automation-saas .as-cta-wrapper,
+body.automation-saas .cta[data-bg-color] {
+  background: var(--ac-brand-primary) !important;
+}
+
+body.automation-saas .as-cta-wrapper::before,
+body.automation-saas .as-cta-wrapper::after,
+body.automation-saas .as-cta-wrapper .cta-bg-video {
+  display: none !important;
+}
+
+body.automation-saas .as-cta-inner .sec-title .title {
+  background: none;
+  color: #ffffff;
+  -webkit-text-fill-color: currentColor;
+}
+
+body.automation-saas .brand-section[data-bg-color],
+body.automation-saas .footer[data-bg-color],
+body.automation-saas .as-footer-wrapper {
+  background: var(--ac-inverse) !important;
+}
+
+body.automation-saas .as-footer-wrapper::before {
+  background: linear-gradient(180deg, rgba(198, 154, 69, 0.08), rgba(198, 154, 69, 0));
+}
+
+body.automation-saas .as-footer-widget .widget-list li a:hover,
+body.automation-saas .as-footer-bottom a:hover {
+  color: #ffffff;
+}
+
 /* Keep longer compliance contact details inside the locked footer columns. */
 .as-footer-widget .widget-list li,
 .as-footer-widget .widget-list a {
@@ -60,7 +516,7 @@
   padding: 16px;
   gap: 18px;
   overflow: hidden;
-  box-shadow: 0 12px 34px rgba(77, 31, 132, 0.06);
+  box-shadow: 0 12px 34px rgba(1, 12, 65, 0.06);
 }
 
 .introduction .as-asintroduction-item .xb-item--holder {
@@ -176,6 +632,24 @@
 }
 
 @media (max-width: 991px) {
+  body.automation-saas .hero-area--three .as-hero-container {
+    padding-top: 118px;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .sec-title .title {
+    font-size: clamp(42px, 8vw, 62px);
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-item--content {
+    max-width: 620px;
+    font-size: 17px;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-item--img {
+    margin-top: 46px;
+    padding: 34px 22px 0;
+  }
+
   .introduction .as-introduction-wrapper > .row .sec-title {
     margin-bottom: 58px;
   }
@@ -212,6 +686,53 @@
 }
 
 @media (max-width: 767px) {
+  body.automation-saas .hero-area--three .as-hero-container {
+    padding-top: 104px;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content {
+    margin: 0;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-item--breadcrumd {
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .sec-title .title {
+    font-size: clamp(38px, 11vw, 48px);
+    line-height: 1.04;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-item--content {
+    max-width: 34ch;
+    margin: 22px auto 30px;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-hero-btn {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-hero-btn .thm-btn {
+    width: 100%;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-item--img {
+    margin: 36px 0 0;
+    padding: 22px 14px 0;
+    border-radius: 18px 18px 0 0;
+  }
+
+  body.automation-saas .hero-area--three .xb-hero-content .xb-item--img .img {
+    display: none;
+  }
+
   .introduction .as-introduction-wrapper.pt-135 {
     padding-top: 82px;
     padding-bottom: 78px;
@@ -274,7 +795,7 @@
     overflow: visible;
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 12px 30px rgba(77, 31, 132, 0.07);
+    box-shadow: 0 12px 30px rgba(1, 12, 65, 0.07);
   }
 
   .introduction .as-asintroduction-item .xb-item--holder {
@@ -337,7 +858,7 @@
   }
 }
 
-/* Reference-aligned mobile navigation. Desktop header rules remain untouched. */
+/* Reference-aligned mobile navigation. */
 @media (max-width: 991px) {
   body.ac-mobile-menu-open {
     overflow: hidden;
@@ -351,8 +872,9 @@
     z-index: 1000;
     height: calc(76px + env(safe-area-inset-top));
     padding-top: env(safe-area-inset-top);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    background: #120224;
+    border-bottom: 1px solid var(--ac-border);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 8px 24px rgba(20, 36, 71, 0.08);
   }
 
   #xb-header-area.header-area--three > .xb-header-area-sticky {
@@ -379,6 +901,25 @@
   #xb-header-area.header-area--three .xb-header-logo {
     width: 164px;
     max-width: calc(100vw - 116px);
+  }
+
+  #xb-header-area.header-area--three .xb-header-logo .ac-logo-plate,
+  #xb-header-area.header-area--three .xb-logo-mobile .ac-logo-plate {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #xb-header-area.header-area--three .ac-official-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   #xb-header-area.header-area--three .header-bar-mobile {
@@ -408,7 +949,7 @@
     height: 1px;
     margin: 0;
     border-radius: 0;
-    background: #fff;
+    background: var(--ac-brand-primary);
     transition: transform 220ms ease, opacity 220ms ease;
   }
 
@@ -430,8 +971,8 @@
     z-index: 1010;
     width: 100%;
     height: auto;
-    color: #fff;
-    background: #120224;
+    color: var(--ac-text);
+    background: #ffffff;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -469,15 +1010,15 @@
     display: flex;
     align-items: center;
     padding: 13px 52px 13px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    color: #fff;
+    border-bottom: 1px solid var(--ac-border);
+    color: var(--ac-text);
     font-size: 26px;
     font-weight: 500;
     line-height: 1.3;
   }
 
   #xb-header-area.header-area--three .xb-menu-primary > li.active > a {
-    color: #c39aff;
+    color: var(--ac-brand-accent-text);
   }
 
   #xb-header-area.header-area--three .xb-menu-primary .sub-menu {
@@ -492,8 +1033,8 @@
     display: flex;
     align-items: center;
     padding: 9px 42px 9px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-    color: rgba(255, 255, 255, 0.68);
+    border-bottom: 1px solid var(--ac-border);
+    color: var(--ac-text-muted);
     font-size: 15px;
     font-weight: 500;
     line-height: 1.35;
@@ -506,7 +1047,7 @@
     height: 46px;
     display: grid;
     place-items: center;
-    color: #fff;
+    color: var(--ac-brand-primary);
     background: transparent;
   }
 
@@ -522,7 +1063,7 @@
   #xb-header-area.header-area--three .ac-mobile-actions {
     margin-top: auto;
     padding-top: 28px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid var(--ac-border);
   }
 
   #xb-header-area.header-area--three .ac-mobile-consultation {
@@ -555,6 +1096,12 @@
 
   #xb-header-area.header-area--three .xb-header-logo {
     width: 154px;
+  }
+
+  #xb-header-area.header-area--three .xb-header-logo .ac-logo-plate,
+  #xb-header-area.header-area--three .xb-logo-mobile .ac-logo-plate {
+    width: 86px;
+    padding: 0;
   }
 
   #xb-header-area.header-area--three .xb-header-menu {

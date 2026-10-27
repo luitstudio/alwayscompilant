@@ -37,7 +37,7 @@ function HeaderContent({ mobileOpen, servicesOpen, menuId, isActive, onClose, on
     <div className="container">
       <div className="header__wrap ul_li_between">
         <div className="xb-header-logo">
-          <Link href="/" className="logo" aria-label="Always Compliant home"><Image src="/assets/img/always-compliant/always-compliant-logo-white.svg" alt="Always Compliant" width={132} height={28} priority={logoPriority} /></Link>
+          <Link href="/" className="logo ac-logo-plate" aria-label="Always Compliant home"><Image className="ac-official-logo ac-official-logo--header" src="/assets/img/always-compliant/always-compliant-logo-main.png" alt="Always Compliant" width={1506} height={1044} priority={logoPriority} /></Link>
         </div>
         <div className="main-menu__wrap navbar navbar-expand-lg p-0">
           <nav className="main-menu collapse navbar-collapse" aria-label="Primary navigation">
@@ -65,7 +65,7 @@ function HeaderContent({ mobileOpen, servicesOpen, menuId, isActive, onClose, on
         <div className={`xb-header-menu${mobileOpen ? " active" : ""}`} id={menuId} aria-hidden={!mobileOpen}>
           <div className="xb-header-menu-scroll">
             <button className="xb-menu-close xb-hide-xl xb-close" type="button" aria-label="Close navigation" onClick={onClose}></button>
-            <div className="xb-logo-mobile xb-hide-xl"><Link href="/" rel="home" onClick={onClose}><Image src="/assets/img/always-compliant/always-compliant-logo.svg" alt="Always Compliant" width={132} height={28} /></Link></div>
+            <div className="xb-logo-mobile xb-hide-xl"><Link href="/" className="ac-logo-plate" rel="home" onClick={onClose}><Image className="ac-official-logo ac-official-logo--mobile" src="/assets/img/always-compliant/always-compliant-logo-main.png" alt="Always Compliant" width={1506} height={1044} /></Link></div>
             <nav className="xb-header-nav" aria-label="Mobile navigation">
               <ul className="xb-menu-primary clearfix">
                 {navigation.map((item) => (

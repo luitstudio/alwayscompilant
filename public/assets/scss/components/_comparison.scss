@@ -55,10 +55,10 @@
                 border-radius: 11px;
                 background-size: 300%;
                 animation: rainbow2 5s linear infinite;
-                background: linear-gradient(119deg, rgba(104, 64, 255, 0.3) 0%, rgba(161, 255, 98, 0.3) 33.73%, rgba(181, 162, 255, 0.3) 52.21%, rgba(195, 179, 255, 0.3) 100%);
+                background: linear-gradient(119deg, rgba(1, 12, 65, 0.26) 0%, rgba(161, 255, 98, 0.3) 33.73%, rgba(215, 169, 40, 0.26) 52.21%, rgba(255, 244, 216, 0.54) 100%);
             }
             &--list {
-                background: linear-gradient(169deg, #e1d9ff 0%, #fff 100%);
+                background: linear-gradient(169deg, #fff4d8 0%, #fff 100%);
                 li {
                     position: relative;
                     &::before {

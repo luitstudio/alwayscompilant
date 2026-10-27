@@ -257,7 +257,7 @@
             box-shadow: none;
             background: none;
             @include border-radius(0);
-            border-top: 1px solid #ebdcfe;
+            border-top: 1px solid rgba(1, 12, 65, 0.14);
             &:not(:last-child) {
                 margin-bottom: 0;
             }
@@ -322,7 +322,7 @@
             padding: 50px 90px;
             overflow: hidden;
             @include border-radius(20px);
-            border: 1px solid #ebdcfe;
+            border: 1px solid rgba(1, 12, 65, 0.14);
             background: rgba(255, 254, 254, 0.7);
             @media only screen and (min-width: 1200px) and (max-width: 1300px) {
                 padding: 50px 60px;
@@ -370,7 +370,7 @@
             font-weight: 500;
             line-height: 33px;
             margin: 5px 0 45px;
-            background: linear-gradient(157deg, #000 22.95%, #6101ea 100%);
+            background: linear-gradient(157deg, #010c41 22.95%, #d7a928 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;

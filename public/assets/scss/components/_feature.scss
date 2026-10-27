@@ -11,7 +11,7 @@
     z-index: 1;
     padding: 107px 50px 30px;
     @include border-radius(10px);
-    background: linear-gradient(180deg, #6840ff 0%, #a48cff 100%);
+    background: linear-gradient(180deg, #010c41 0%, #d7a928 100%);
     offset-distance: 0;
     @include respond(lg) {
         width: 400px; 
@@ -148,7 +148,7 @@
             height: 70px;
             padding: 5px;
             @include border-radius(15px);
-            background: linear-gradient(179deg, #e1d9ff 0%, #fff 100%);
+            background: linear-gradient(179deg, #fff4d8 0%, #fff 100%);
             .icon {
                 height: 100%;
                 width: 100%;

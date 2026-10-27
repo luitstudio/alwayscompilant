@@ -623,7 +623,7 @@
     overflow: hidden;
     z-index: 1;
     @include border-radius(20px);
-    box-shadow: 0 0 4px 0 rgba(148, 81, 245, 0.5);
+    box-shadow: 0 0 4px 0 rgba(215, 169, 40, 0.45);
     @include respond(xs) {
         margin: 0 10px 0;
     }
@@ -653,7 +653,7 @@
             height: 575px;
             position: absolute;
             border-radius: 100%;
-            background: #9654f4;
+            background: #d7a928;
             filter: blur(50px);
             &--1 {
                 left: 0;
@@ -697,7 +697,7 @@
                 color: var(--color-white);
                 @include border-radius(500px);
                 border: 1px solid rgba(55, 48, 64, 0.5);
-                box-shadow: 0 0 4px 0 rgba(148, 81, 245, 0.3);
+                box-shadow: 0 0 4px 0 rgba(215, 169, 40, 0.28);
                 @include respond(lg) {
                     width: 250px;
                 }

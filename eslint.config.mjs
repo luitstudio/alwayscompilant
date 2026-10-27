@@ -16,6 +16,5 @@ export default defineConfig([
     ".sastik-*/**",
     "node_modules/**",
     "public/assets/**",
-    "sastik-html-package/**",
   ]),
 ]);

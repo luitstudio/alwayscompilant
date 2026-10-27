@@ -12,7 +12,6 @@ This repository contains the production website for Always Compliant. It provide
 - React 19
 - TypeScript
 - ESLint
-- `html-react-parser` for the preserved Sastik home-page template
 
 ## Project Structure
 
@@ -21,7 +20,7 @@ app/                  Next.js routes, layout and styles
 components/           Shared React and site components
 data/                 Site content and page data
 public/               Production styles, scripts, fonts and images
-sastik-html-package/  Preserved source template used by the home route
+scripts/              Maintenance scripts for generated/static assets
 ```
 
 ## Local Development
@@ -62,6 +61,7 @@ Resend, the contact form will fail to send.
 - `npm run start` serves the production build.
 - `npm run lint` checks the project with ESLint.
 - `npm run typecheck` checks TypeScript without emitting files.
+- `npm run prepare:homepage` normalizes the generated homepage HTML after manual/template updates.
 
 ## Production Build
 
@@ -82,7 +82,7 @@ npm run start
 ## Deployment Notes
 
 - Deploy from the repository root with the standard Next.js build command, `npm run build`.
-- Keep `sastik-html-package/Sastik/home-3.html` in the deployment source because the home route reads this preserved template.
 - Keep all files under `public/` available at the site root.
+- The legacy `sastik-html-package/` source folder is no longer a runtime dependency; the live site uses React code plus assets under `public/`.
 - Set `RESEND_API_KEY` in the production environment — the contact form cannot send mail without it.
 - Verify the sending domain in Resend before going live; unverified domains are rate-limited and can only send to the Resend account's own email address.

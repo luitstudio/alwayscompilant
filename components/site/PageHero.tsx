@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { ButtonLink } from "./Button";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -12,17 +12,21 @@ type PageHeroProps = {
 export function PageHero({ eyebrow, title, description, primary, secondary }: PageHeroProps) {
   return (
     <section className="ac-page-hero">
-      <div className="ac-hero-orbit ac-hero-orbit-one" aria-hidden="true"></div>
-      <div className="ac-hero-orbit ac-hero-orbit-two" aria-hidden="true"></div>
-      <div className="container ac-hero-content">
-        <span className="ac-eyebrow ac-eyebrow-light">{eyebrow}</span>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        {(primary || secondary) && <div className="ac-hero-actions">
-          {primary && <Link className="ac-button ac-button-primary" href={primary.href}>{primary.label} <span aria-hidden="true">↗</span></Link>}
-          {secondary && <Link className="ac-button ac-button-secondary" href={secondary.href}>{secondary.label} <span aria-hidden="true">→</span></Link>}
-        </div>}
-        <div className="ac-hero-mark" aria-hidden="true"><Image src="/assets/img/always-compliant/always-compliant-mark.svg" alt="" width={59} height={56} /></div>
+      <div className="container ac-page-hero-grid">
+        <div className="ac-hero-content">
+          <span className="ac-eyebrow">{eyebrow}</span>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          {(primary || secondary) && (
+            <div className="ac-hero-actions">
+              {primary && <ButtonLink href={primary.href}>{primary.label} <span aria-hidden="true">-&gt;</span></ButtonLink>}
+              {secondary && <ButtonLink variant="secondary" href={secondary.href}>{secondary.label}</ButtonLink>}
+            </div>
+          )}
+        </div>
+        <div className="ac-hero-mark" aria-hidden="true">
+          <Image src="/assets/img/always-compliant/always-compliant-mark.svg" alt="" width={59} height={56} unoptimized />
+        </div>
       </div>
     </section>
   );
